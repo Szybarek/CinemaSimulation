@@ -1,6 +1,7 @@
 import java.awt.Menu;
 import java.util.List;
 public class Repertoire{
+    // domyślnietakie pola powinny być wszystkie private
     int dayOfWeek;
     int hours;
     int ticketSeller;
@@ -21,6 +22,7 @@ public class Repertoire{
         this.menu = menu;
     }
 
+    // a takie wartości warto sobie dać do jakiegoś enuma albo chociaż zrobić interfejs constants i tam pododawać jako static final
     void showRepertoire(){
         //music
         if(music == 1){

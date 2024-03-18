@@ -40,6 +40,7 @@ public class GUI {
     void startSimulation(){
             simulation.passTime(menu.repertoire.hours * 60000); //metoda trwająca tyle godzin ile poda uzytkownik, puszczająca symulacje
             createSimulation();
+            // while true samo w sobie nie jest najlepsza praktyka
             while(true) {
                 updateCheckerQ();
                 updateSellerQ();
@@ -85,38 +86,23 @@ public class GUI {
             simulationFrame.add(Q1_SELLER.get(1));
         }*/
 
+    // poprawa czytelności, ogólnie jak Ci gui coś na żółto podświetla i proponuje gotowa zmianę to w 99% przypadków warto z tego skorzystać
     void updateGUI(){
         Menu.Status status = menu.currentStatus;
-        switch(status) {
-            case Menu.Status.MENU:
-                createMenu();
-                break;
-            case Menu.Status.DAYS:
-                createDays();
-                break;
-            case Menu.Status.HOUR:
-                createHours();
-                break;
-            case Menu.Status.SELLER:
-                createSellers();
-                break;
-            case Menu.Status.CHECKER:
-                createCheckers();
-                break;
-            case Menu.Status.MUSIC:
-                createMusic();
-                break;
-            case Menu.Status.FILMLIST:
-                createFilmList();
-                break;
-            case Menu.Status.SIMULATION:
-                startSimulation();
-                break;
-            case Menu.Status.EXIT:
-                System.exit(0);
-            case Menu.Status.ERROR:
+        switch (status) {
+            case MENU -> createMenu();
+            case DAYS -> createDays();
+            case HOUR -> createHours();
+            case SELLER -> createSellers();
+            case CHECKER -> createCheckers();
+            case MUSIC -> createMusic();
+            case FILMLIST -> createFilmList();
+            case SIMULATION -> startSimulation();
+            case EXIT -> System.exit(0);
+            case ERROR -> {
                 menu.error();
                 System.exit(0);
+            }
         }
     }
 
@@ -160,6 +146,8 @@ public class GUI {
     void createSimulation() {
         simulationFrame.setLayout(null);
 
+        // Z założenia przyjętego u mnie w zespole kod nie powinien wymagać raczej komentarzy, tutaj np może warto by dodać
+        // argument name, który byś tym panelom potem przypiswał, żeby wiedzieć co jest co
         //CONSTANT PANELS - PANELS THAT ARE ALWAYS VISIBLE
         //Entrance_1
         simulationFrame.add(createPanel(Color.green, 550, 50, 50, 150));

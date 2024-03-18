@@ -1,0 +1,12 @@
+1. warto by dodać jakieś foldery, chociazby na obrazki ale też, żeby jakoś klasy pogrupować, np gui, logika itd
+2. warto w całym projekcie jakiejś jednej konwencji się trzymać np jak masz funkcje to zawsze definiujesz ja tak
+    funkcja()
+    {
+        dupa
+    }
+    a nie raz tak a raz
+    funkcja() {
+    dupa
+    }
+    (taki przyklad)
+3.

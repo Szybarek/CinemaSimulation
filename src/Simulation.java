@@ -6,6 +6,7 @@ import java.util.TimerTask;
 
 public class Simulation {
 
+    // te powinny być private
     Menu menu;
     Client client = new Client();
     ticketSeller seller = new ticketSeller();
@@ -16,6 +17,7 @@ public class Simulation {
 
     //TIMER
     Timer timer = new Timer();
+    // a te powinny być private final static
     int MINUTES_3 = 3000; //czas obsługiwania klienta (3min symulacji = 3sek czasu rzeczywistego)
     int MINUTES_5 = 5000;
     int MINUTES_8 = 8000;

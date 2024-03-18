@@ -1,5 +1,6 @@
 public class Menu {
 
+    // konwencja nazewnictwa jest taka, że pownno byc FILM_LIST
     enum Status{
         MENU, DAYS, HOUR, SELLER, CHECKER, MUSIC, FILMLIST, EXIT, ERROR, SIMULATION
     }

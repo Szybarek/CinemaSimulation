@@ -1,5 +1,6 @@
 public class Film {
     //private, protected, public
+    // pola, których wartości z załóżenia się nie zmieniaja powinny być raczej final
        private String filmType;
        private String filmName;
        private int filmID;
