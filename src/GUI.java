@@ -36,15 +36,38 @@ public class GUI {
     }
 
 
-
     void startSimulation(){
             simulation.passTime(menu.repertoire.hours * 60000); //metoda trwająca tyle godzin ile poda uzytkownik, puszczająca symulacje
             createSimulation();
-            while(true) {
-                updateCheckerQ();
-                updateSellerQ();
-                simulationFrame.repaint();
-            }
+            updateSimulation();
+    }
+
+    void updateSimulation(){
+        while(true) {
+            updateSellerNumber(1); //zmiana na repertoire.menu.seller
+            updateCheckerNumber(1); //zmiana na repertoire.menu.checker
+            updateCheckerQ();
+            updateSellerQ();
+            updateFilmQ();
+            updateExitQ();
+            simulationFrame.repaint();
+        }
+    }
+
+    void updateSellerNumber(int sellerNumber)
+    {
+        for(int i = 0; i < sellerNumber; i++)
+        {
+            simulationFrame.add(SELLERS.get(i));
+        }
+    }
+
+    void updateCheckerNumber(int checkerNumber)
+    {
+        for(int i = 0; i < checkerNumber; i++)
+        {
+            simulationFrame.add(CHECKERS_Q1_Q2.get(i));
+        }
     }
 
     void updateSellerQ()
@@ -52,10 +75,10 @@ public class GUI {
         for(int i = 0; i < simulation.sellerQueue.size(); i++) {
             simulationFrame.add(Q1_SELLER.get(i));
         }
-        if(simulation.queueChange)
+        if(simulation.queueChangeSeller)
         {
-           simulationFrame.remove(Q1_SELLER.get(simulation.sellerQueue.size() - 1));
-           simulation.queueChange = false;
+           simulationFrame.remove(Q1_SELLER.get(simulation.sellerQueue.size()));
+           simulation.queueChangeSeller = false;
         }
     }
 
@@ -65,6 +88,53 @@ public class GUI {
         {
             simulationFrame.add(Q1_CHECKER.get(i));
         }
+        if(simulation.queueChangeChecker && simulation.checkerQueue.size() < 3)
+        {
+            simulationFrame.remove(Q1_CHECKER.get(simulation.checkerQueue.size()));
+            simulation.queueChangeChecker = false;
+        }
+    }
+
+    void updateFilmQ() {
+        if (!simulation.filmQueue.isEmpty()) {
+            simulationFrame.add(Q1_HALL.getFirst());
+        }
+        if (simulation.queueWatchingMovie) {
+            simulationFrame.remove(Q1_HALL.getFirst());
+            simulation.queueChangeFilm = false;
+        }
+    }
+
+        void updateExitQ()
+        {
+            if(!simulation.exitQueue.isEmpty())
+            {
+                for(int i = 0; i < simulation.exitQueue.size(); i++) {
+                    simulationFrame.add(Q_EXIT.get(i));
+                }
+            }
+            if(simulation.clientLeaving)
+            {
+                simulationFrame.remove(Q_EXIT.get(simulation.exitQueue.size()));
+                simulation.clientLeaving = false;
+            }
+        }
+
+        /*simulationFrame.add(Q1_HALL.get(0));
+        if(simulation.queueChangeFilm)
+        {
+            simulationFrame.remove(Q1_HALL.get(simulation.filmQueue.size()));
+            simulation.queueChangeFilm = false;
+        }*/
+
+
+    void updateWatchingMovie()
+    {
+       /*if(simulation.watchingMovie)
+        {
+            simulationFrame.remove(Q1_HALL.get(simulation.filmQueue.size()));
+            simulation.watchingMovie = false;
+        }*/
     }
 
         /*if(simulation.sellerQueue.size() == 0)
@@ -155,6 +225,7 @@ public class GUI {
         panel.setBounds(xPosition, yPosition, 20, 20);
         //frame.add(panel);
     }
+
 
 
     void createSimulation() {
