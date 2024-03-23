@@ -13,6 +13,7 @@ public class Main {
         //menu.menuStart();
         //gui.createDays();
         GUI gui = new GUI();
+        System.out.print("kupa");
         //Simulation simulation = new Simulation();
         //simulation.createQueue(10);
     }
